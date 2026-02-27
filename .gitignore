@@ -1,0 +1,4 @@
+# Arquivos que não irão para o GitHub
+
+.venv
+.env
