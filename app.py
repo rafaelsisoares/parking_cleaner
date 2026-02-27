@@ -45,7 +45,6 @@ def open_session() -> None:
     footer = browser.find_elements(by=By.CLASS_NAME, value="col-lg-12")[-1]
     btn_clear = footer.find_element(by=By.TAG_NAME, value="button")
     cleared_credentials = int(btn_clear.find_element(by=By.TAG_NAME, value="span").get_attribute("textContent"))
-    print(cleared_credentials)
     btn_clear.click()
     sleep(5)
 
