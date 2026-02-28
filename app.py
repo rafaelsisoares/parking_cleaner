@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 from dotenv import load_dotenv
 from time import sleep
 import os
@@ -12,10 +13,10 @@ def open_session() -> None:
     url = os.getenv("URL")
     email = os.getenv("EMAIL")
     password = os.getenv("PASSWORD")
-    cleared_credentials = 0
+    cleared_credentials = ""
 
     browser = webdriver.Chrome()
-    wait = WebDriverWait(browser, timeout=10)
+    wait = WebDriverWait(browser, timeout=20)
 
     browser.get(url)
     input_email = wait.until(EC.visibility_of_element_located(
@@ -57,7 +58,17 @@ def open_session() -> None:
         by=By.TAG_NAME, value="span"
         ).get_attribute("textContent")
     btn_clear.click()
-    sleep(5)
+    panel = wait.until(EC.visibility_of_element_located(
+        (By.CLASS_NAME, "panel-body")))
+    select = panel.find_element(by=By.ID, value="ReasonMaintenance")
+    reasons = Select(select)
+    reasons.select_by_visible_text("LIMPEZA DE PÁTIO")
+    panel_footer = browser.find_element(by=By.CLASS_NAME, value="panel-footer")
+    btn_save = panel_footer.find_element(by=By.CLASS_NAME, value="btn-primary")
+    btn_save.click()
+    wait.until(EC.invisibility_of_element_located(panel))
+    print(f"O pátio foi limpo, {cleared_credentials} credenciais fechadas.")
+    browser.quit()
 
 
 if __name__ == "__main__":
