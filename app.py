@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -15,7 +16,11 @@ def open_session() -> None:
     password = os.getenv("PASSWORD")
     cleared_credentials = ""
 
-    browser = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--disable-features=BlockInsecurePrivateNetworkRequests")
+    options.add_argument("--disable-web-security")
+    options.add_argument("start-maximized")
+    browser = webdriver.Chrome(options=options)
     wait = WebDriverWait(browser, timeout=20)
 
     browser.get(url)
@@ -64,8 +69,8 @@ def open_session() -> None:
     reasons = Select(select)
     reasons.select_by_visible_text("LIMPEZA DE PÁTIO")
     panel_footer = browser.find_element(by=By.CLASS_NAME, value="panel-footer")
-    btn_save = panel_footer.find_element(by=By.CLASS_NAME, value="btn-primary")
-    btn_save.click()
+    # btn_save = panel_footer.find_element(by=By.CLASS_NAME, value="btn-primary")
+    # btn_save.click()
     wait.until(EC.invisibility_of_element_located(panel))
     print(f"O pátio foi limpo, {cleared_credentials} credenciais fechadas.")
     browser.quit()
