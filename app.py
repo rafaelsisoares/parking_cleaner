@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from dotenv import load_dotenv
 from time import sleep
+from utils.consts import DISABLE_FEATURE, ID_EMAIL, ID_PASSWORD
 import os
 
 
@@ -17,7 +18,7 @@ def open_session() -> None:
     cleared_credentials = ""
 
     options = Options()
-    options.add_argument("--disable-features=BlockInsecurePrivateNetworkRequests")
+    options.add_argument(f"--disable-features={DISABLE_FEATURE}")
     options.add_argument("--disable-web-security")
     options.add_argument("start-maximized")
     browser = webdriver.Chrome(options=options)
@@ -25,9 +26,9 @@ def open_session() -> None:
 
     browser.get(url)
     input_email = wait.until(EC.visibility_of_element_located(
-        (By.ID, "inputEmail3")))
+        (By.ID, ID_EMAIL)))
     input_password = wait.until(EC.visibility_of_element_located(
-        (By.ID, "inputPassword3")))
+        (By.ID, ID_PASSWORD)))
     btn_access = browser.find_element(by=By.LINK_TEXT, value="Acessar")
     input_email.send_keys(email)
     input_password.send_keys(password)
@@ -69,10 +70,15 @@ def open_session() -> None:
     reasons = Select(select)
     reasons.select_by_visible_text("LIMPEZA DE PÁTIO")
     panel_footer = browser.find_element(by=By.CLASS_NAME, value="panel-footer")
-    # btn_save = panel_footer.find_element(by=By.CLASS_NAME, value="btn-primary")
+    btn_save = panel_footer.find_element(by=By.CLASS_NAME, value="btn-primary")
     # btn_save.click()
-    wait.until(EC.invisibility_of_element_located(panel))
-    print(f"O pátio foi limpo, {cleared_credentials} credenciais fechadas.")
+    # wait.until(EC.invisibility_of_element_located(panel))
+    os.system("clear")
+    print(
+        f"##############################################################\n"
+        f"O pátio foi limpo, {cleared_credentials} credenciais fechadas.\n"
+        f"##############################################################\n"
+        )
     browser.quit()
 
 
