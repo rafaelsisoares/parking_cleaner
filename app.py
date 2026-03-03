@@ -71,8 +71,8 @@ def open_session() -> None:
     reasons.select_by_visible_text("LIMPEZA DE PÁTIO")
     panel_footer = browser.find_element(by=By.CLASS_NAME, value="panel-footer")
     btn_save = panel_footer.find_element(by=By.CLASS_NAME, value="btn-primary")
-    # btn_save.click()
-    # wait.until(EC.invisibility_of_element_located(panel))
+    btn_save.click()
+    wait.until(EC.invisibility_of_element_located(panel))
     os.system("clear")
     print(
         f"##############################################################\n"

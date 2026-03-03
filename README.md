@@ -22,3 +22,12 @@ Todos os dias, ao final do expediente era necessário limpar as credenciais que 
     <summary>1. Verifique se o Python está instalado na sua máquina</summary>
     Caso não saiba como instalar, <a href="https://www.python.org/downloads/">clique aqui</a>
 </details>
+<br />
+<details>
+    <summary>2. Clone o repositorio</summary>
+</details>
+<br />
+3. Instale as dependências:<br />
+```
+pip install -r requirements.txt
+```
