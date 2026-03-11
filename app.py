@@ -57,6 +57,9 @@ class Cleaner:
         panel = self.__wait.until(EC.visibility_of_element_located(
             (By.CLASS_NAME, "panel-body")
         ))
+        self.__wait.until(
+            EC.presence_of_all_elements_located((By.TAG_NAME, "option"))
+        )
         select = panel.find_element(by=By.ID, value="ReasonMaintenance")
         reasons = Select(select)
         reasons.select_by_visible_text(LP)
