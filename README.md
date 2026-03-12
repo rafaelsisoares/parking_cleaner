@@ -1,17 +1,17 @@
 # Projeto Parking Cleaner 🚗🚦🧹
 
 ### Objetivo:
-Este projeto tem como objetivo automatizar a limpeza das credenciais que permaneceram abertas no sistema
+Este projeto tem como objetivo automatizar a limpeza das credenciais que permaneceram abertas no sistema da Perto
 
 ### Motivação:
-Todos os dias, ao final do expediente era necessário limpar as credenciais que ficaram abertas no sistema pois caso não fosse feita tal limpeza, as pessoas que estivessem com as credenciais abertas no sistema poderiam ter problemas ao entrar no pátio, então eu decidi automatizar essa tarefa para economizar tempo e testar meus conhecimentos e habilidades com ferramentas de automação WEB e tecnicas de Web Scraping.
+Todos os dias, ao final do expediente era necessário limpar as credenciais que ficaram abertas no sistema pois caso não fosse feita tal limpeza, as pessoas que estivessem com as credenciais abertas no sistema poderiam ter problemas ao entrar no pátio, então eu decidi automatizar essa tarefa para economizar tempo e testar meus conhecimentos e habilidades com ferramentas de automação WEB e técnicas de Web Scraping.
 
 
 ### Tecnologias usadas no projeto:
 * Python -> Linguagem de programação.
-* Selenium -> Biblioteca usada para fazer a automação
-* Dotenv -> Para carregar as variaveis de ambiente
-* VS Code -> IDE de desenvolviemto
+* Selenium -> Biblioteca usada para fazer a automação.
+* Dotenv -> Para carregar as variaveis de ambiente.
+* VS Code -> IDE de desenvolviemto.
 
 
 ## Usando o projeto:
