@@ -39,4 +39,7 @@ Todos os dias, ao final do expediente era necessário limpar as credenciais que 
 6. Por fim execute o script:
     * `python3 app.py`
 
+
+Obs. No futuro essa aplicação será containerizada para funcionar em qualquer maquina
+
 ###### Feito com ❤ por [Rafael Soares](https://rafael-soares.vercel.app/) | Março de 2026

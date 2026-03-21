@@ -57,11 +57,9 @@ class Cleaner:
         panel = self.__wait.until(EC.visibility_of_element_located(
             (By.CLASS_NAME, "panel-body")
         ))
-        self.__wait.until(
-            EC.presence_of_all_elements_located((By.TAG_NAME, "option"))
-        )
         select = panel.find_element(by=By.ID, value="ReasonMaintenance")
         reasons = Select(select)
+        self.__wait.until(lambda _: len(reasons.options) > 1)
         reasons.select_by_visible_text(LP)
         panel_footer = self.__browser.find_element(
             by=By.CLASS_NAME, value="panel-footer"
@@ -85,6 +83,7 @@ class Cleaner:
         self.__go_to_table()
         self.__select_all()
         self.__finish_clear()
+        os.system("clear")
         print(
             f"##############################################################\n"
             f"O pátio foi limpo, "
@@ -96,8 +95,10 @@ class Cleaner:
 
 if __name__ == "__main__":
     options = Options()
+    options.add_argument("--incognito")
     options.add_argument(f"--disable-features={DISABLE_FEATURE}")
     options.add_argument("--disable-web-security")
+    options.add_argument("--disable-save-password-bubble")
     options.add_argument("start-maximized")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
     browser = webdriver.Chrome(options=options)
