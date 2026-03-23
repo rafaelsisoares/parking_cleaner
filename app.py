@@ -10,6 +10,7 @@ from utils.consts import DISABLE_FEATURE, ID_EMAIL, ID_PASSWORD, OP, MC, LP
 import os
 
 
+# Classe de limpeza de pátio.
 class Cleaner:
     def __init__(self, browser) -> None:
         load_dotenv()
@@ -20,6 +21,7 @@ class Cleaner:
         self.__password = os.getenv("PASSWORD")
         self.__cleared_credentials = ""
 
+# Metodo que navega até a tabela de credenciais abertas
     def __go_to_table(self) -> None:
         aside_menu = self.__wait.until(EC.visibility_of_element_located(
             (By.TAG_NAME, "aside")
@@ -31,6 +33,7 @@ class Cleaner:
             (By.LINK_TEXT, MC)
         )).click()
 
+# Metodo que seleciona todas as credenciais abertas
     def __select_all(self) -> None:
         self.__wait.until(EC.element_to_be_clickable(
             (By.CLASS_NAME, "btn-success")
@@ -53,6 +56,7 @@ class Cleaner:
         ).get_attribute("textContent")
         btn_clear.click()
 
+# Metodo que finaliza a limpeza
     def __finish_clear(self) -> None:
         panel = self.__wait.until(EC.visibility_of_element_located(
             (By.CLASS_NAME, "panel-body")
@@ -69,6 +73,7 @@ class Cleaner:
         ).click()
         self.__wait.until(EC.invisibility_of_element_located(panel))
 
+# Metodo que inicia o script
     def start(self) -> None:
         self.__browser.get(self.__url)
         self.__wait.until(EC.visibility_of_element_located(
@@ -94,6 +99,7 @@ class Cleaner:
 
 
 if __name__ == "__main__":
+    # Adiciona opções para a instancia do navegador aberta pelo script
     options = Options()
     options.add_argument("--incognito")
     options.add_argument(f"--disable-features={DISABLE_FEATURE}")
@@ -101,6 +107,8 @@ if __name__ == "__main__":
     options.add_argument("--disable-save-password-bubble")
     options.add_argument("start-maximized")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    # Inicia a instancia do navegador controlada pelo codigo
+    # O navegador usado pelo script (Chrome)
     browser = webdriver.Chrome(options=options)
     cleaner = Cleaner(browser)
     cleaner.start()
