@@ -11,6 +11,7 @@ Todos os dias, ao final do expediente era necessário limpar as credenciais que 
 * Python -> Linguagem de programação.
 * Selenium -> Biblioteca usada para fazer a automação.
 * Dotenv -> Para carregar as variaveis de ambiente.
+* Google Chrome -> Navegador usado na automação
 * VS Code -> IDE de desenvolviemto.
 
 

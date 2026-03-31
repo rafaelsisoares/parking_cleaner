@@ -27,7 +27,7 @@ class Cleaner:
             (By.TAG_NAME, "aside")
         ))
         aside_menu.find_element(
-            by=By.LINK_TEXT, value=OP
+            By.LINK_TEXT, OP
         ).click()
         self.__wait.until(EC.visibility_of_element_located(
             (By.LINK_TEXT, MC)
@@ -44,15 +44,15 @@ class Cleaner:
             head = self.__wait.until(EC.visibility_of_element_located(
                 (By.TAG_NAME, "thead")
             ))
-            label = head.find_element(by=By.TAG_NAME, value="label")
-            label.find_element(by=By.TAG_NAME, value="span").click()
-            self.__browser.find_element(by=By.LINK_TEXT, value=">").click()
+            label = head.find_element(By.TAG_NAME, "label")
+            label.find_element(By.TAG_NAME, "span").click()
+            self.__browser.find_element(By.LINK_TEXT, ">").click()
         footer = self.__browser.find_elements(
-            by=By.CLASS_NAME, value="col-lg-12"
+            By.CLASS_NAME, "col-lg-12"
         )[-1]
-        btn_clear = footer.find_element(by=By.TAG_NAME, value="button")
+        btn_clear = footer.find_element(By.TAG_NAME, "button")
         self.__cleared_credentials = btn_clear.find_element(
-            by=By.TAG_NAME, value="span"
+            By.TAG_NAME, "span"
         ).get_attribute("textContent")
         btn_clear.click()
 
@@ -61,15 +61,15 @@ class Cleaner:
         panel = self.__wait.until(EC.visibility_of_element_located(
             (By.CLASS_NAME, "panel-body")
         ))
-        select = panel.find_element(by=By.ID, value="ReasonMaintenance")
+        select = panel.find_element(By.ID, "ReasonMaintenance")
         reasons = Select(select)
         self.__wait.until(lambda _: len(reasons.options) > 1)
         reasons.select_by_visible_text(LP)
         panel_footer = self.__browser.find_element(
-            by=By.CLASS_NAME, value="panel-footer"
+            By.CLASS_NAME, "panel-footer"
         )
         panel_footer.find_element(
-            by=By.CLASS_NAME, value="btn-primary"
+            By.CLASS_NAME, "btn-primary"
         ).click()
         self.__wait.until(EC.invisibility_of_element_located(panel))
 
@@ -80,7 +80,7 @@ class Cleaner:
             (By.ID, ID_EMAIL))).send_keys(self.__email)
         self.__wait.until(EC.visibility_of_element_located(
             (By.ID, ID_PASSWORD))).send_keys(self.__password)
-        self.__browser.find_element(by=By.LINK_TEXT, value="Acessar").click()
+        self.__browser.find_element(By.LINK_TEXT, "Acessar").click()
         self.__wait.until(EC.invisibility_of_element_located(
             (By.LINK_TEXT, "Acessar")
         ))
