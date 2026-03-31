@@ -1,3 +1,6 @@
 DISABLE_FEATURE = "BlockInsecurePrivateNetworkRequests"
 ID_EMAIL = "inputEmail3"
 ID_PASSWORD = "inputPassword3"
+OP = "Operações"
+MC = "Manutenção de Credenciais"
+LP = "LIMPEZA DE PÁTIO"
