@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import NoSuchElementException
 from dotenv import load_dotenv
 from time import sleep
 from utils.consts import DISABLE_FEATURE, ID_EMAIL, ID_PASSWORD, OP, MC, LP
@@ -72,6 +73,15 @@ class Cleaner:
             By.CLASS_NAME, "btn-primary"
         ).click()
         self.__wait.until(EC.invisibility_of_element_located(panel))
+        try:
+            self.__browser.find_element(By.TAG_NAME, "thead")
+            print("Ocorreu um erro desconhecido durante a limpeza")
+            print("Tentando novamente...")
+            self.__select_all()
+            self.__finish_clear()
+
+        except NoSuchElementException:
+            return None
 
 # Metodo que inicia o script
     def start(self) -> None:
