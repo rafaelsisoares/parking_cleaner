@@ -26,16 +26,16 @@ Todos os dias, ao final do expediente era necessário limpar as credenciais que 
     * **Use esse comando** `git clone git@github.com:rafaelsisoares/parking_cleaner.git`
     * Depois entre no repositório com o comando `cd parking_cleaner`
 
-3. Instale as dependências:
-    * **Use esse comando** `pip install -r requirements.txt`
-
-4. Configure as variaveis de ambiente:
+3. Configure as variaveis de ambiente:
     * Renomeie o arquivo `.env.example` para `.env`
     * Abra o arquivo e insira as credenciais de acesso corretamente
     * Obs: As linhas que começam com `#` são comentários e não irão interferir na leitura e carregamento das variaveis de ambiente.
 
-5. Ative o ambiente virtual:
-    * **Use esse comando** `source .venv/bin/activate`
+4. Crie o ambiente virtual:
+    * **Use esse comando** `python3 -m venv .venv && source .venv/bin/activate`
+
+5. Instale as dependências:
+    * **Use esse comando** `pip install -r requirements.txt`
 
 6. Por fim execute o script:
     * `python3 app.py`
