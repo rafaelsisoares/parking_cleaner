@@ -21,6 +21,7 @@ class Cleaner:
         self.__email = os.getenv("EMAIL")
         self.__password = os.getenv("PASSWORD")
         self.__cleared_credentials = ""
+        self.__attempts = 0
 
 # Metodo que navega até a tabela de credenciais abertas
     def __go_to_table(self) -> None:
@@ -75,10 +76,17 @@ class Cleaner:
         self.__wait.until(EC.invisibility_of_element_located(panel))
         try:
             self.__browser.find_element(By.TAG_NAME, "thead")
-            print("Ocorreu um erro desconhecido durante a limpeza")
-            print("Tentando novamente...")
-            self.__select_all()
-            self.__finish_clear()
+            if self.__attempts < 3:
+                print("Ocorreu um erro desconhecido durante a limpeza")
+                print("Tentando novamente...")
+                self.__attempts = self.__attempts + 1
+                self.__select_all()
+                self.__finish_clear()
+            else:
+                os.system("clear")
+                print("Ocorreu um erro desconhecido durante a limpeza")
+                print("Verifique a aplicação e/ou a rede e tente novamente")
+                self.__browser.quit()
 
         except NoSuchElementException:
             return None
@@ -98,13 +106,14 @@ class Cleaner:
         self.__go_to_table()
         self.__select_all()
         self.__finish_clear()
-        os.system("clear")
-        print(
-            f"##############################################################\n"
-            f"O pátio foi limpo, "
-            f"{self.__cleared_credentials} credenciais fechadas.\n"
-            f"##############################################################\n"
-        )
+        if self.__attempts < 3:
+            os.system("clear")
+            print(
+                f"##########################################################\n"
+                f"O pátio foi limpo, "
+                f"{self.__cleared_credentials} credenciais fechadas.\n"
+                f"##########################################################\n"
+            )
         self.__browser.quit()
 
 
