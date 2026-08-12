@@ -63,16 +63,16 @@ class Cleaner:
         panel = self.__wait.until(EC.visibility_of_element_located(
             (By.CLASS_NAME, "panel-body")
         ))
-        select = panel.find_element(By.ID, "ReasonMaintenance")
+        select = panel.find_element(By.ID, "ReasonMaintenanceActive")
         reasons = Select(select)
         self.__wait.until(lambda _: len(reasons.options) > 1)
         reasons.select_by_visible_text(LP)
         panel_footer = self.__browser.find_element(
             By.CLASS_NAME, "panel-footer"
         )
-        panel_footer.find_element(
-            By.CLASS_NAME, "btn-primary"
-        ).click()
+        # panel_footer.find_element(
+        #     By.CLASS_NAME, "btn-primary"
+        # ).click()
         self.__wait.until(EC.invisibility_of_element_located(panel))
         try:
             self.__browser.find_element(By.TAG_NAME, "thead")
