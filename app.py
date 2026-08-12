@@ -70,9 +70,9 @@ class Cleaner:
         panel_footer = self.__browser.find_element(
             By.CLASS_NAME, "panel-footer"
         )
-        # panel_footer.find_element(
-        #     By.CLASS_NAME, "btn-primary"
-        # ).click()
+        panel_footer.find_element(
+            By.CLASS_NAME, "btn-primary"
+        ).click()
         self.__wait.until(EC.invisibility_of_element_located(panel))
         try:
             self.__browser.find_element(By.TAG_NAME, "thead")
