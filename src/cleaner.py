@@ -1,5 +1,3 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,8 +5,9 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from dotenv import load_dotenv
 from time import sleep
-from utils.consts import DISABLE_FEATURE, ID_EMAIL, ID_PASSWORD, OP, MC, LP
+from utils.consts import ID_EMAIL, ID_PASSWORD, OP, MC, LP
 import os
+import subprocess
 
 
 # Classe de limpeza de pátio.
@@ -63,7 +62,7 @@ class Cleaner:
         panel = self.__wait.until(EC.visibility_of_element_located(
             (By.CLASS_NAME, "panel-body")
         ))
-        select = panel.find_element(By.ID, "ReasonMaintenance")
+        select = panel.find_element(By.ID, "ReasonMaintenanceActive")
         reasons = Select(select)
         self.__wait.until(lambda _: len(reasons.options) > 1)
         reasons.select_by_visible_text(LP)
@@ -107,7 +106,7 @@ class Cleaner:
         self.__select_all()
         self.__finish_clear()
         if self.__attempts < 3:
-            os.system("clear")
+            subprocess.run(["clear"])
             print(
                 f"##########################################################\n"
                 f"O pátio foi limpo, "
@@ -115,19 +114,3 @@ class Cleaner:
                 f"##########################################################\n"
             )
         self.__browser.quit()
-
-
-if __name__ == "__main__":
-    # Adiciona opções para a instancia do navegador aberta pelo script
-    options = Options()
-    options.add_argument("--incognito")
-    options.add_argument(f"--disable-features={DISABLE_FEATURE}")
-    options.add_argument("--disable-web-security")
-    options.add_argument("--disable-save-password-bubble")
-    options.add_argument("start-maximized")
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    # Inicia a instancia do navegador controlada pelo codigo
-    # O navegador usado pelo script (Chrome)
-    browser = webdriver.Chrome(options=options)
-    cleaner = Cleaner(browser)
-    cleaner.start()

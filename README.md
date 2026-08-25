@@ -31,16 +31,24 @@ Todos os dias, ao final do expediente era necessário limpar as credenciais que 
     * Abra o arquivo e insira as credenciais de acesso corretamente
     * Obs: As linhas que começam com `#` são comentários e não irão interferir na leitura e carregamento das variaveis de ambiente.
 
-4. Crie o ambiente virtual:
-    * **Use esse comando** `python3 -m venv .venv && source .venv/bin/activate`
+~~4. Crie o ambiente virtual:
+    * **Use esse comando** `python3 -m venv .venv && source .venv/bin/activate`~~
 
-5. Instale as dependências:
-    * **Use esse comando** `pip install -r requirements.txt`
+~~5. Instale as dependências:
+    * **Use esse comando** `pip install -r requirements.txt`~~
 
-6. Por fim execute o script:
-    * `python3 app.py`
+~~6. Por fim execute o script:
+    * `python3 app.py`~~
+
+**Atualização:**  
+Foi adicionado um _shell script_ para automatizar os passos 4, 5 e 6  
+Após concluir o terceiro passo basta executar o _shell script_:  
+```
+./clear.sh
+```
+
 
 
 Obs. No futuro essa aplicação será containerizada para funcionar em qualquer maquina
 
-###### Feito com ❤ por [Rafael Soares](https://rafael-soares.vercel.app/) | Março de 2026
+###### Feito com ❤️ por [Rafael Soares](https://rafael-soares.vercel.app/) | Março de 2026
