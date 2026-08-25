@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from src.utils.consts import DISABLE_FEATURE
-from .cleaner import Cleaner
+from utils.consts import DISABLE_FEATURE
+from cleaner import Cleaner
 
 
 if __name__ == "__main__":

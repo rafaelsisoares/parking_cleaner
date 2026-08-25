@@ -5,8 +5,9 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from dotenv import load_dotenv
 from time import sleep
-from src.utils.consts import ID_EMAIL, ID_PASSWORD, OP, MC, LP
+from utils.consts import ID_EMAIL, ID_PASSWORD, OP, MC, LP
 import os
+import subprocess
 
 
 # Classe de limpeza de pátio.
@@ -105,7 +106,7 @@ class Cleaner:
         self.__select_all()
         self.__finish_clear()
         if self.__attempts < 3:
-            os.system("clear")
+            subprocess.run(["clear"])
             print(
                 f"##########################################################\n"
                 f"O pátio foi limpo, "
