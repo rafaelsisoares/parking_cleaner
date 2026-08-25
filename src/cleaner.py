@@ -1,5 +1,3 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,7 +5,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from dotenv import load_dotenv
 from time import sleep
-from utils.consts import DISABLE_FEATURE, ID_EMAIL, ID_PASSWORD, OP, MC, LP
+from src.utils.consts import ID_EMAIL, ID_PASSWORD, OP, MC, LP
 import os
 
 
@@ -115,19 +113,3 @@ class Cleaner:
                 f"##########################################################\n"
             )
         self.__browser.quit()
-
-
-if __name__ == "__main__":
-    # Adiciona opções para a instancia do navegador aberta pelo script
-    options = Options()
-    options.add_argument("--incognito")
-    options.add_argument(f"--disable-features={DISABLE_FEATURE}")
-    options.add_argument("--disable-web-security")
-    options.add_argument("--disable-save-password-bubble")
-    options.add_argument("start-maximized")
-    options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    # Inicia a instancia do navegador controlada pelo codigo
-    # O navegador usado pelo script (Chrome)
-    browser = webdriver.Chrome(options=options)
-    cleaner = Cleaner(browser)
-    cleaner.start()
